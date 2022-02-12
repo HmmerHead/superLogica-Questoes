@@ -120,6 +120,7 @@
       <excludeFolder url="file://$MODULE_DIR$/item1/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/item1/vendor/phpunit/php-invoker" />
       <excludeFolder url="file://$MODULE_DIR$/item1/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/item1/vendor/lucascudo/laravel-pt-br-localization" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
