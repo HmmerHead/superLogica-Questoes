@@ -17,6 +17,13 @@ class UserPutResquest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        if ($this->has('zipCode')) {
+            $this->merge(['zipCode'=> preg_replace('/\D/', '', $this->zipCode)]);
+        }
+    }
+
     public function attributes()
     {
         return [
