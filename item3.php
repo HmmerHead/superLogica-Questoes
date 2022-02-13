@@ -1,21 +1,19 @@
 -- Utilizou-se o mysql para a execucao desse script
 
-JOIN ???
 
-
--- create
 CREATE TABLE USUARIO (
-  Id INTEGER PRIMARY KEY,
-  Cpf varchar(11),
-  nome varchar(255) NOT NULL
+    Id INTEGER not null,
+    Cpf varchar(11) PRIMARY KEY NOT NULL,
+    nome varchar(255) NOT NULL
 );
 
--- create
+
 CREATE TABLE INFO (
-  Id INTEGER PRIMARY KEY,
-  Cpf varchar(11),
-  genero ENUM('F','M'),
-  ano_nascimento SMALLINT NOT NULL
+    Id INTEGER PRIMARY KEY,
+    Cpf varchar(11),
+    genero ENUM('F','M'),
+    ano_nascimento SMALLINT NOT NULL,
+    constraint fk_usuario foreign key (Cpf) references USUARIO (Cpf)
 );
 
 -- insert Usuario
@@ -35,14 +33,14 @@ INSERT INTO INFO VALUES (5, '83257946074', 'F', 1970);
 INSERT INTO INFO VALUES (6, '07583509025', 'M', 1972);
 
 
--- fetch 
-SELECT 
-concat(USUARIO.nome, ' - ', INFO.genero) as "usuário",
-case
-  when (year(now()) - INFO.ano_nascimento) > 50 then "SIM"
-  when (year(now()) - INFO.ano_nascimento) <= 50 then "NÃO"
-END as maior_50_anos
-FROM USUARIO
-  join INFO on INFO.Cpf = USUARIO.Cpf
-  where INFO.genero = 'M'
-  order by USUARIO.nome desc;
+-- Consulta
+    SELECT
+    concat(USUARIO.nome, ' - ', INFO.genero) as "usuário",
+    case
+        when (year(now()) - INFO.ano_nascimento) > 50 then "SIM"
+        when (year(now()) - INFO.ano_nascimento) <= 50 then "NÃO"
+    END as maior_50_anos
+    FROM USUARIO
+        join INFO on INFO.Cpf = USUARIO.Cpf
+    where INFO.genero = 'M'
+    limit 3
