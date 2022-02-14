@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Exceptions\UserException;
 use App\Models\User;
 use App\Repositories\Contracts\UserInterface;
-use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -45,9 +44,9 @@ class UserRepository implements UserInterface
 
     /**
      * @param Fluent $data
-     * @return User
+     * @return UserException|User
      */
-    public function createUser(Fluent $data): User
+    public function createUser(Fluent $data)
     {
         try {
 
@@ -66,7 +65,6 @@ class UserRepository implements UserInterface
             return $user;
 
         } catch (UserException $exception) {
-            dd($exception);
             DB::rollBack();
 
             return $exception;
@@ -76,9 +74,9 @@ class UserRepository implements UserInterface
     /**
      * @param User $user
      * @param Fluent $data
-     * @return User
+     * @return User|UserException
      */
-    public function updateUser(User $user, Fluent $data): User
+    public function updateUser(User $user, Fluent $data)
     {
         try {
 
@@ -98,7 +96,7 @@ class UserRepository implements UserInterface
 
             return $user;
 
-        } catch (Exception $exception) {
+        } catch (UserException $exception) {
             DB::rollBack();
 
             return $exception;
@@ -107,7 +105,7 @@ class UserRepository implements UserInterface
 
     /**
      * @param User $user
-     * @return User|Exception
+     * @return UserException|User
      */
     public function deleteUser(User $user)
     {
@@ -121,7 +119,7 @@ class UserRepository implements UserInterface
 
             return $user;
 
-        } catch (\Exception $exception) {
+        } catch (UserException $exception) {
             DB::rollBack();
 
             return $exception;

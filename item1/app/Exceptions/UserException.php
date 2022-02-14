@@ -3,7 +3,7 @@
 namespace App\Exceptions;
 
 
-class UserException extends ExceptionAbstract
+class UserException extends \Exception
 {
     //
 }
