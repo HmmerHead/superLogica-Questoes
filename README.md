@@ -11,6 +11,10 @@ O projeto também inclui algumas seed's para gerar alguns dados para teste
 
 `./vendor/bin/sail artisan migrate:fresh --seed`
 
+Foi incluido também uma rota, e funcionalidades de uma API para as funcionalidades do usuário.
+
+O [Arquivo](https://github.com/HmmerHead/superLogica-Questoes/blob/main/item1/user.postman_collection.json) do Postman 
+possui algumas informações sobre as rotas
 
 ### Item 2
 
